@@ -1,39 +1,45 @@
 # HandGesture ✋
 
-Real-time hand gesture drawing app using **MediaPipe** and **OpenCV**. Draw on screen using your index finger via webcam — select colors, start/stop drawing, and clear the canvas, all with hand gestures.
+Real-time hand gesture drawing app using **MediaPipe** and **OpenCV**. Draw on screen using your index finger through a webcam — control colors, start/stop drawing, and clear the canvas, all with hand gestures.
 
 ## Features
-- 🖐️ Detects up to 4 hands simultaneously
-- ✏️ Draw by raising only your index finger
-- 🎨 Switch colors: Blue, Green, Red, Pink
-- 🖱️ Menu control via hand gesture (no mouse/keyboard needed)
-- 🧹 Clear canvas gesture
-- ⚡ Real-time at 30+ FPS
 
-## Demo
+- ✏️ Draw on screen by raising only your index finger
+- 🎨 Switch brush color: Blue, Green, Red, Pink
+- 🖐️ Supports up to 4 hands at once
+- 🧹 Clear canvas by hovering over the Clear button
+- ⚡ Real-time processing via webcam
 
-Point your **index finger** at a menu option on screen to select it:
+## How It Works
 
-| Option | Action |
-|--------|--------|
-| Start  | Enable drawing mode |
-| Stop   | Disable drawing mode |
-| Clear  | Wipe the canvas |
+The app uses **MediaPipe Hands** to detect 21 hand landmarks per hand in real time. It checks whether only the index finger is raised (writing gesture), then draws a line between the current and previous fingertip position using **OpenCV**.
+
+Menu options (Start, Stop, Clear, color buttons) are positioned on-screen. When the index finger tip enters a button's area, the action triggers automatically — no mouse or keyboard needed.
+
+## Controls
+
+| On-Screen Button | Action |
+|-----------------|--------|
+| Start | Enable drawing mode |
+| Stop | Disable drawing mode |
+| Clear | Wipe the canvas |
 | Blue / Green / Red / Pink | Change brush color |
+
+Press **Q** to quit the app.
 
 ## Setup
 
-> **Requires Python 3.9 – 3.12** (Python 3.14 is NOT supported by mediapipe yet)
+> ⚠️ Requires **Python 3.9 – 3.12**. Python 3.14 is NOT supported by MediaPipe.
 
 ```bash
 # 1. Clone repo
 git clone https://github.com/rafiarsya07/HandGesture.git
 cd HandGesture
 
-# 2. Create virtual environment (recommended)
+# 2. Create virtual environment
 python -m venv venv
-venv\Scripts\activate      # Windows
-# source venv/bin/activate  # Mac/Linux
+venv\Scripts\activate        # Windows
+# source venv/bin/activate   # Mac/Linux
 
 # 3. Install dependencies
 pip install -r requirements.txt
@@ -42,19 +48,15 @@ pip install -r requirements.txt
 python handgesture.py
 ```
 
-Press **Q** to quit.
-
 ## Tech Stack
-- Python 3.9–3.12
-- [MediaPipe](https://mediapipe.dev/) 0.10.14
+
+- Python 3.11
+- MediaPipe 0.10.14
 - OpenCV 4.10
-- NumPy
+- NumPy 1.26.4
 
 ## Notes
-- Make sure your webcam is connected and accessible
-- Works best with good lighting and a plain background
-- mediapipe 0.10.21+ dropped `mp.solutions` support — use `0.10.14` as specified in requirements
-# HandGesture
-# HandGesture
-# HandGesture
-# HandGesture
+
+- Make sure your webcam is connected before running
+- Works best in a well-lit room with a plain background
+- `venv/` folder is excluded from this repo — install dependencies manually via `requirements.txt`
